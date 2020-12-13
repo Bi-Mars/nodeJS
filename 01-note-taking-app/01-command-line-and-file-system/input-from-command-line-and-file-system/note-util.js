@@ -47,6 +47,7 @@ const addNote = (title, body) => {
     return note.title === title;
   });
 
+  debugger;
   // if (duplicateNotes.length === 0) {
   if (!duplicateNote) {
     const newNote = createNote();
