@@ -49,4 +49,28 @@ yargs.command({
   },
 });
 
+// list Notes command
+yargs.command({
+  command: "listNotes",
+  describe: "List notes' title",
+  handler: () => {
+    console.log(chalk.green.inverse("!!Your Notes!!"));
+    notes.listNotes();
+  },
+});
+
+// read note
+yargs.command({
+  command: "readNote",
+  describe: "Read note",
+  builder: {
+    title: {
+      describe: "Title to search",
+      demandOption: true,
+    },
+  },
+  handler: (argv) => {
+    notes.readNote(argv.title);
+  },
+});
 yargs.parse();
