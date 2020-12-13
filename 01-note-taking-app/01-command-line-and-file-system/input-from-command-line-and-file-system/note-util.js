@@ -1,5 +1,6 @@
 //imports
 const fs = require("fs");
+const chalk = require("chalk");
 
 //functions
 //function to get note from the file
@@ -23,8 +24,9 @@ const addNote = (title, body) => {
     notes.push(newNote);
     // save the note
     saveNote(notes);
+    console.log(chalk.green.inverse("Note successfully added"));
   } else {
-    console.log("Note title taken!!!");
+    console.log(chalk.red.inverse("Note title taken!!!"));
   }
 };
 
@@ -34,10 +36,13 @@ const deleteNote = (title) => {
   console.log("index: " + noteFound);
   if (noteFound >= 0) {
     notes.splice(noteFound, 1);
-    console.log("Note deleted");
+    console.log(chalk.green.inverse("Note deleted"));
   } else {
-    console.log("Note does not exist with the title provided by you");
+    console.log(
+      chalk.red.inverse("Note does not exist with the title provided by you")
+    );
   }
+
   saveNote(notes);
 };
 
