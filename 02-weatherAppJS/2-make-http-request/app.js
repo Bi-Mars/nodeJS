@@ -17,11 +17,16 @@ const getWeather = (longitude, latitude) => {
   axios
     .get(url_weather)
     .then((responseData) => {
+      if (responseData.data.error) {
+        // if error with URL
+        console.log("Unable to find location");
+      }
       console.log(
         `${responseData.data.current.weather_descriptions[0]} It is currently ${responseData.data.current.temperature} degrees out. It feels like ${responseData.data.current.feelslike}.`
       );
     })
     .catch((error) => {
+      // low level error
       console.log(error);
     });
 };
@@ -30,10 +35,16 @@ const getWeather = (longitude, latitude) => {
 axios
   .get(url_geocode)
   .then((responseData) => {
-    const latitude = responseData.data.features[0].geometry.coordinates[0];
-    const longitude = responseData.data.features[0].geometry.coordinates[1];
+    if (responseData.data.features.length === 0) {
+      console.log("Unable to find location services. Check your URL location");
+    } else {
+      const latitude = responseData.data.features[0].geometry.coordinates[0];
+      const longitude = responseData.data.features[0].geometry.coordinates[1];
 
-    getWeather(longitude, latitude);
+      getWeather(longitude, latitude);
+    }
   })
-  .catch((error) => {});
+  .catch((error) => {
+    console.log("Unable to connect to location services!!");
+  });
 //exports
