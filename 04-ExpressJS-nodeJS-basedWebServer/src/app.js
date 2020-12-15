@@ -5,6 +5,7 @@ const app = express();
 
 //domain: Routes/Endpoint
 //What to do when someone tries to get the resource at this endpoint/route?
+//root page
 app.get("", (request, response) => {
   // this function executes when user hits "/help" route/endpoint and describes what to send back(response)
 
@@ -14,17 +15,36 @@ app.get("", (request, response) => {
 
 // "/help" route
 app.get("/help", (request, response) => {
-  response.send("Help Page");
+  //send JSON --> array of objects
+  response.send([
+    {
+      name: "Bimarsh",
+      age: 22,
+    },
+    {
+      name: "Bebo",
+      age: 12,
+    },
+    {
+      name: "Timmy",
+      age: "Trumphet",
+    },
+  ]);
 });
 
 // "/about" route
 app.get("/about", (request, response) => {
+  //send HTML
   response.send("<h1> About Me coming soon...</h>");
 });
 
 // "weather" route
 app.get("/weather", (request, response) => {
-  response.send("<i> Weather forecast service will be added</i>");
+  //send JSON
+  response.send({
+    forecast: "32",
+    location: "lancaster",
+  });
 });
 
 //start up the server and listen on specific port
