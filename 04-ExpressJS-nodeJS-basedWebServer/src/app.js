@@ -1,42 +1,21 @@
 //express is only 1 function
+const path = require("path"); // core node module to manipulate path (absolute) and is OS compatible
 const express = require("express");
+
 //execute the function and store return values in app
 const app = express();
 
-//domain: Routes/Endpoint
-//What to do when someone tries to get the resource at this endpoint/route?
-//root page
-app.get("", (request, response) => {
-  // this function executes when user hits "/help" route/endpoint and describes what to send back(response)
+//serve the directories
+app.use(express.static(path.join(__dirname, "../public")));
 
-  //send something back to requester
-  response.send("Hello Express!");
-});
+// __dirname --> contains a path to directory that current script lives in
+console.log(__dirname);
+// __filename --> contains a path to file that current file lives in
+console.log(__filename);
 
-// "/help" route
-app.get("/help", (request, response) => {
-  //send JSON --> array of objects
-  response.send([
-    {
-      name: "Bimarsh",
-      age: 22,
-    },
-    {
-      name: "Bebo",
-      age: 12,
-    },
-    {
-      name: "Timmy",
-      age: "Trumphet",
-    },
-  ]);
-});
-
-// "/about" route
-app.get("/about", (request, response) => {
-  //send HTML
-  response.send("<h1> About Me coming soon...</h>");
-});
+//path --> provided by core node module and is OS compatible
+// Join path name and add .. to go 1 ldirectory up
+console.log(path.join(__dirname, "../public"));
 
 // "weather" route
 app.get("/weather", (request, response) => {
