@@ -14,18 +14,20 @@ const geoCode = (location, callback) => {
   // request to get geocode
   axios
     .get(url_geocode)
-    .then((responseData) => {
-      if (responseData.data.features.length === 0) {
+    // responseData.data.features
+    .then(({ data } = responseData) => {
+      if (data.features.length === 0) {
         // call callback function
         callback(
           "Unable to find location services. Check your URL location",
           undefined
         );
       } else {
+        //function call
         callback(undefined, {
-          latitude: responseData.data.features[0].center[0],
-          longitude: responseData.data.features[0].center[1],
-          location: responseData.data.features[0].place_name,
+          latitude: data.features[0].center[0],
+          longitude: data.features[0].center[1],
+          location: data.features[0].place_name,
         });
       }
     })

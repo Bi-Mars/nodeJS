@@ -10,18 +10,22 @@ const location = process.argv[2];
 
 if (location !== undefined) {
   //call the geoCode function
-  geoCode_func(location, (error, data) => {
+  // or default value   -->      { latitude, longitude, location} = {}
+  geoCode_func(location, (error, { latitude, longitude, location } = data) => {
     // after getting geocode, use the data to call weather API
     weather_func(
-      data.latitude,
-      data.longitude,
-      data.location,
-      (error, response) => {
+      latitude,
+      longitude,
+      location,
+      (
+        error,
+        { weather_descriptions, current_temperature, feels_like } = response
+      ) => {
         if (error !== undefined) {
           console.log("Error: ", error);
         } else {
           console.log(
-            `Weather Summary at ${response.location} is ${response.weather_descriptions}. Currently, the weather is ${response.current_temperature} but feels like ${response.feels_like}`
+            `Weather Summary at ${location} is ${weather_descriptions}. Currently, the weather is ${current_temperature} but feels like ${feels_like}`
           );
         }
       }

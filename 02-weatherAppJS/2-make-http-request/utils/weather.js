@@ -11,17 +11,16 @@ const weather = (latitude, longitude, place, callback) => {
 
   axios
     .get(url_weather)
-    .then((responseData) => {
-      if (responseData.data.error) {
+    .then(({ data } = responseData) => {
+      if (data.error) {
         // if error with URL
         callback("Unable to find location", undefined);
       } else {
         //if response is good from the API, call this function and provide expected value
         callback(undefined, {
-          weather_descriptions:
-            responseData.data.current.weather_descriptions[0],
-          current_temperature: responseData.data.current.temperature,
-          feels_like: responseData.data.current.feelslike,
+          weather_descriptions: data.current.weather_descriptions[0],
+          current_temperature: data.current.temperature,
+          feels_like: data.current.feelslike,
           location: place,
         });
       }
