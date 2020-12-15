@@ -2,6 +2,8 @@
 const path = require("path"); // core node module to manipulate path (absolute) and is OS compatible
 const express = require("express");
 const hbs = require("hbs"); //for partial templating
+const { request } = require("http");
+const { response } = require("express");
 
 //execute the function and store return values in app
 const app = express();
@@ -52,6 +54,22 @@ app.get("/weather", (request, response) => {
   response.send({
     forecast: "32",
     location: "lancaster",
+  });
+});
+app.get("/help/*", (request, response) => {
+  response.render("error404", {
+    title: "404",
+    creater: "Bimarsh Sharma",
+    errorMessage: "Help article not found",
+  });
+});
+
+// match anything
+app.get("*", (request, response) => {
+  response.render("error404", {
+    title: "404",
+    creater: "Bimarsh Sharma",
+    errorMessage: "Page Not found",
   });
 });
 
