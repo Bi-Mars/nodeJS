@@ -1,17 +1,20 @@
 //express is only 1 function
 const path = require("path"); // core node module to manipulate path (absolute) and is OS compatible
 const express = require("express");
+const hbs = require("hbs"); //for partial templating
 
 //execute the function and store return values in app
 const app = express();
 
 // define paths for ExpressJS configuration
 const publicDirectoryPath = path.join(__dirname, "../public");
-const viewsPath = path.join(__dirname, "../templates"); // path to templates
+const viewsPath = path.join(__dirname, "../templates/views"); // path to templates
+const partialsPath = path.join(__dirname, "../templates/partials");
 
 // Setup handlebars engine and views location
 app.set("view engine", "hbs");
 app.set("views", viewsPath); // point express to custom directories to serve views
+hbs.registerPartials(partialsPath);
 
 // Setup static directories to serve
 app.use(express.static(publicDirectoryPath));
