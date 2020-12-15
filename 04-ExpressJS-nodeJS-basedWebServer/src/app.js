@@ -5,15 +5,16 @@ const express = require("express");
 //execute the function and store return values in app
 const app = express();
 
-//serve the directories
-app.use(express.static(path.join(__dirname, "../public")));
+// define paths for ExpressJS configuration
+const publicDirectoryPath = path.join(__dirname, "../public");
+const viewsPath = path.join(__dirname, "../templates"); // path to templates
 
-//Tell expressJS which templating engine we are using?
-// set allows you to set a value for a given express setting
-// parameter: key and value. key for template engine --> view engine
-// express expects all of the views (handlebars template) to live in specific folder
-// root of the project > views
+// Setup handlebars engine and views location
 app.set("view engine", "hbs");
+app.set("views", viewsPath); // point express to custom directories to serve views
+
+// Setup static directories to serve
+app.use(express.static(publicDirectoryPath));
 
 // access dynamic html via handle bar
 app.get("", (request, response) => {
