@@ -8,8 +8,8 @@ const app = express();
 
 // define paths for ExpressJS configuration
 const publicDirectoryPath = path.join(__dirname, "../public");
-const viewsPath = path.join(__dirname, "../templates/views"); // path to templates
-const partialsPath = path.join(__dirname, "../templates/partials");
+const viewsPath = path.join(__dirname, "../templates/views/"); // path to templates
+const partialsPath = path.join(__dirname, "../templates/partials/");
 
 // Setup handlebars engine and views location
 app.set("view engine", "hbs");
@@ -40,7 +40,9 @@ app.get("/about", (request, response) => {
 //get route for help page
 app.get("/help", (request, response) => {
   response.render("help", {
-    help: "This page will help you out. 42",
+    message: "This page will help you out. 42",
+    title: "Help Me",
+    creater: "Bimarsh Sharma",
   });
 });
 
