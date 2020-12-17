@@ -72,7 +72,7 @@ app.get("/weather", (request, response) => {
   }
 
   // call Geocode API and Weather API
-  get_geocode(request.query.address, (error, geoCode_data) => {
+  get_geocode(request.query.address, (error, geoCode_data = {}) => {
     if (error) {
       return response.send({
         errorMessageGeoCode: error,
