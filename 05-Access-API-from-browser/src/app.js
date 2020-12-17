@@ -4,6 +4,8 @@ const express = require("express");
 const hbs = require("hbs"); //for partial templating
 const { request } = require("http");
 const { response } = require("express");
+const get_geocode = require("./utils/get_geocode");
+const get_weather = require("./utils/get_weather");
 
 //execute the function and store return values in app
 const app = express();
@@ -69,10 +71,21 @@ app.get("/weather", (request, response) => {
     });
   }
 
-  //send JSON
-  response.send({
-    forecast: "32",
-    location: "lancaster",
+  // call Geocode API and Weather API
+  get_geocode(request.query.address, (error, geoCode_data) => {
+    if (error) {
+      return response.send({
+        errorMessageGeoCode: error,
+      });
+    }
+    get_weather(geoCode_data, (error, weather_data) => {
+      if (error) {
+        return response.send({
+          errorMessageWeather: error,
+        });
+      }
+      response.send(weather_data);
+    });
   });
 });
 

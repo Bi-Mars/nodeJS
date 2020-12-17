@@ -18,6 +18,7 @@ if (location !== undefined) {
       longitude,
       location,
       (
+        // callback function as parameter
         error,
         { weather_descriptions, current_temperature, feels_like } = response
       ) => {

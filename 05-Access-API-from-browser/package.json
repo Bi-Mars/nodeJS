@@ -1,5 +1,5 @@
 {
-  "name": "04-ExpressJS-nodeJS-basedWebServer",
+  "name": "05-Access-API-from-browser",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.0",
     "express": "^4.17.1",
     "hbs": "^4.1.1"
   }
