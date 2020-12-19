@@ -1,5 +1,6 @@
 body{
     color: #333333;
+    font-size: 1.4rem;
     font-family: Arial, Helvetica, sans-serif;
     max-width: 650px;
     margin: 0 auto;
@@ -8,6 +9,7 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: aqua;
 }
 
 .main-content{
@@ -34,4 +36,25 @@ header a {
     color: #888888;
     margin-right: 16px;
     text-decoration: none;
+}
+
+input{
+    border: 1px solid #cccccc;
+    padding: 8px;
+    width: 80%;
+    height: 3vh;
+    font-size: 1.5rem;
+}
+
+p{
+    font-size: 1.7rem;
+    color:rgb(231, 154, 9);
+}
+
+button{
+    cursor: pointer;
+    border: 1px solid #888888;
+    background: #888888;
+    color: white;
+    padding: 8px;
 }

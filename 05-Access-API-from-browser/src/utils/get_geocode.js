@@ -9,7 +9,6 @@ const get_geocode = (location, callback) => {
   )}.json?access_token=${key_geocode}&limit=1`;
 
   //make API call to get geocode of specified location
-  console.log(url_geocode);
   axios
     .get(url_geocode)
     .then((responseData) => {

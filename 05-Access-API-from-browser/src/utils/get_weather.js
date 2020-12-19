@@ -5,7 +5,6 @@ const get_weather = (geoCode, callback) => {
   const url_weather = `http://api.weatherstack.com/current?access_key=${key_weather}&query=${geoCode.longitude},${geoCode.latitude}&units=f`;
 
   //make API call
-  console.log(url_weather);
   axios
     .get(url_weather)
     .then(({ data } = responseData) => {
